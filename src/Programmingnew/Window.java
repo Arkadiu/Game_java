@@ -1,6 +1,5 @@
 package Programmingnew;
 
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,7 +14,7 @@ public class Window {
         startFrame.setLocation(0, 0);//изменяем местоположение фрейма
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();//получаем размер экрана
         startFrame.getSize(screenSize);//устанавлим его
-        //startFrame.setSize(1024,680); //размер окна
+        startFrame.setSize(1024,680); //размер окна
         startFrame.add(new Panel());
 
         //окно видемо
