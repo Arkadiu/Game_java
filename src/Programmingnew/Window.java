@@ -17,6 +17,10 @@ public class Window {
         startFrame.setSize(1024,680); //размер окна
         startFrame.add(new Panel());
 
+        Panel panel = new Panel(); //создаем объект панель
+        startFrame.setContentPane(panel); //перенос в фрейм панели с Panel
+
+        panel.mainTimer.start();//Запуск Таймера
         //окно видемо
         startFrame.setVisible(true);
     }
