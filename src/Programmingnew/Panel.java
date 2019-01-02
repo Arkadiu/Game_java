@@ -21,7 +21,7 @@ public class Panel extends JPanel implements ActionListener {
         MENUS, PLAY
     } //объявление перечисления
 
-    public static STATES state = STATES.PLAY;//переменная игры по изначльно - меню
+    public static STATES state = STATES.MENUS;//переменная игры по изначльно - меню
 
     private BufferedImage image; // ссылка на объект
     private Graphics2D g; // ссылка на объект класса
@@ -30,6 +30,7 @@ public class Panel extends JPanel implements ActionListener {
 
     Back back = new Back();
     Player player = new Player();
+    Menus menus = new Menus();
 
     public Panel() {//конструктор
         super(); //активируем конструктор родителя
@@ -46,8 +47,10 @@ public class Panel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (state.equals(STATES.MENUS)) {//если пер state == MENUS
-
+        if (state.equals(STATES.MENUS)) {   //если пер state == MENUS
+            back.draw(g);                   //отобразить фон
+            menus.draw(g);                  //отобразить меню
+            gameDraw();                     //прорисовать в панели
         }
         if (state.equals(STATES.PLAY)) {//игра
             gameUpdate();
@@ -56,13 +59,14 @@ public class Panel extends JPanel implements ActionListener {
         }
 
     }
+
     //Рисуем в виртуальном окне
     public void gameRender() {
         back.draw(g);
         player.draw(g);
     }
 
-    public void gameUpdate(){   //обновления
+    public void gameUpdate() {   //обновления
         player.update();
     }
 
