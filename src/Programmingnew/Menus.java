@@ -11,6 +11,10 @@ public class Menus {
     private double w; // координата w кнопки
     private double h; // координата h кнопки
 
+    public boolean user_m = false;      //курсор на кнопке новый игрок
+    public boolean game_m = false;      //курсор на кнопке играть
+    public static boolean click = false;    //клик мышкой в режиме меню
+
     private String img; //путь к картинке кнопки
 
     String[] list = new String[5];  //Список из 5и элементов типа строка - название кнопок
@@ -47,5 +51,33 @@ public class Menus {
             long length = (int) g.getFontMetrics().getStringBounds(list[i], g).getWidth(); //длинна надписи в пикселях
             g.drawString(list[i], (int) (x + w / 2) - (int) (length / 2), (int) ((y + 140) * i + (h / 3) * 2));   //рисуем строчку в центре панели
         }
+        if (user_m){
+            Font font = new Font("Arial", Font.ITALIC, 30); //Создаем объект класса фреи
+            g.setFont(font);    //устанавливаем наш шрифт
+            g.drawString("Придумай имя для входа в игру", 500, 40); //рисуем строчку
+            g.drawString(" и сохранение прогресса", 500, 70);   //рисуем строчку
+        }
+        if (game_m){
+            g.drawImage(new ImageIcon("image/player.png").getImage(), 700, 190, null);
+            Font font = new Font("Arial", Font.ITALIC, 30);     //Создаем объект класса фонт, передаем в конструктор параметры
+            g.setFont(font);
+            g.drawString("Начать игру", 500, 190);  //рисуем строчку в центре панели
+        }
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getW() {
+        return w;
+    }
+
+    public double getH() {
+        return h;
     }
 }

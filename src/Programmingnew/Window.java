@@ -14,7 +14,7 @@ public class Window {
         startFrame.setLocation(0, 0);//изменяем местоположение фрейма
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();//получаем размер экрана
         startFrame.getSize(screenSize);//устанавлим его
-        startFrame.setSize(1024,680); //размер окна
+        startFrame.setSize(1024,800); //размер окна
         startFrame.add(new Panel());
 
         Panel panel = new Panel(); //создаем объект панель

@@ -14,35 +14,40 @@ public class Listeners implements MouseListener, KeyListener, MouseMotionListene
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();   //Получить код нажатой клавиши
         //Проверка клавиш
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP){
+        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
             Player.up = true;
         }
-        if (key == KeyEvent.VK_S  || key == KeyEvent.VK_DOWN){
+        if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
             Player.down = true;
         }
-        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             Player.left = true;
         }
-        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
             Player.right = true;
         }
     }
+
     //Проверка отжатой клавиши
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();   //Получить код нажатой клавиши
         //Проверка клавиш
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP){
+        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
             Player.up = false;
         }
-        if (key == KeyEvent.VK_S  || key == KeyEvent.VK_DOWN){
+        if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
             Player.down = false;
         }
-        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             Player.left = false;
         }
-        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
             Player.right = false;
+        }
+        if (key == KeyEvent.VK_ESCAPE){
+            if (Panel.state == Panel.STATES.PLAY)
+                Panel.state = Panel.STATES.MENUS;   //переход в меню игры
         }
     }
 
@@ -53,12 +58,20 @@ public class Listeners implements MouseListener, KeyListener, MouseMotionListene
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            if (Panel.state == Panel.STATES.MENUS) {
+                Menus.click = true; //нажатие ЛКМ в меню
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            if (Panel.state == Panel.STATES.MENUS) {
+                Menus.click = false; //нажатие ЛКМ в меню
+            }
+        }
     }
 
     @Override

@@ -50,6 +50,60 @@ public class Panel extends JPanel implements ActionListener {
         if (state.equals(STATES.MENUS)) {   //если пер state == MENUS
             back.draw(g);                   //отобразить фон
             menus.draw(g);                  //отобразить меню
+            //создать нового игрока
+            if (Panel.mouseX > menus.getX() && Panel.mouseX < menus.getX() + menus.getW() &&
+                    Panel.mouseY > (menus.getY() + 140) * 0 && Panel.mouseY < (menus.getY() + 140) * 0 + menus.getH()) {  //если курсор попал в кнопку
+                menus.list[0] = "new user";
+                menus.user_m = true;    //курсор на кнопке
+            } else {
+                menus.list[0] = String.valueOf("Новый игрок");
+                menus.user_m = false;    //курсор не на кнопке
+            }
+
+            //Играть
+            if (Panel.mouseX > menus.getX() && Panel.mouseX < menus.getX() + menus.getW() &&
+                    Panel.mouseY > (menus.getY() + 140) * 1 && Panel.mouseY < (menus.getY() + 140) * 1 + menus.getH()) {  //если курсор попал в кнопку
+                menus.list[1] = "Play";
+                menus.game_m = true;    //курсор на кнопке
+
+                if (Menus.click) {    //клик ЛКМ
+                    state = STATES.PLAY;    //переход в игру
+                    Menus.click = false;
+                }
+            } else {
+                menus.list[1] = String.valueOf("Играть");
+                menus.game_m = false;    //курсор не на кнопке
+            }
+            if (Panel.mouseX > menus.getX() && Panel.mouseX < menus.getX() + menus.getW() &&
+                    Panel.mouseY > (menus.getY() + 140) * 2 && Panel.mouseY < (menus.getY() + 140) * 2 + menus.getH()) {  //если курсор попал в кнопку
+                menus.list[2] = "Settings";
+                //menus.user_m = true;    //курсор на кнопке
+            } else {
+                menus.list[2] = String.valueOf("Настройки");
+                //menus.user_m = false;    //курсор не на кнопке
+            }
+            if (Panel.mouseX > menus.getX() && Panel.mouseX < menus.getX() + menus.getW() &&
+                    Panel.mouseY > (menus.getY() + 140) * 3 && Panel.mouseY < (menus.getY() + 140) * 3 + menus.getH()) {  //если курсор попал в кнопку
+                menus.list[3] = "Rules";
+                //menus.user_m = true;    //курсор на кнопке
+            } else {
+                menus.list[3] = String.valueOf("Правила");
+                //menus.user_m = false;    //курсор не на кнопке
+            }
+
+            //Выход
+            if (Panel.mouseX > menus.getX() && Panel.mouseX < menus.getX() + menus.getW() &&
+                    Panel.mouseY > (menus.getY() + 140) * 4 && Panel.mouseY < (menus.getY() + 140) * 4 + menus.getH()) {  //если курсор попал в кнопку
+                menus.list[4] = "Exit";
+                //menus.user_m = true;    //курсор на кнопке
+                if (Menus.click){
+                    System.exit(0);
+                }
+            } else {
+                menus.list[4] = String.valueOf("Выход");
+                //menus.user_m = false;    //курсор не на кнопке
+            }
+
             gameDraw();                     //прорисовать в панели
         }
         if (state.equals(STATES.PLAY)) {//игра
