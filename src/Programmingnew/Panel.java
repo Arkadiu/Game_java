@@ -50,13 +50,13 @@ public class Panel extends JPanel implements ActionListener {
         if (state.equals(STATES.MENUS)) {   //если пер state == MENUS
             back.draw(g);                   //отобразить фон
             menus.draw(g);                  //отобразить меню
-            //создать нового игрока
-            if (mouseX > menus.button1.getX() && mouseX < menus.button1.getX() + menus.button1.getW() &&
-                    mouseY > menus.button1.getY() && mouseY < menus.button1.getY() + menus.button1.getH()) {  //Если курсор попал на кнопку
-                menus.button1.s = "image/but2.png";
-            } else {
-                menus.button1.s = "image/but1.png";
-            }
+
+            menus.moveButt(menus.button1);
+            menus.moveButt(menus.button2);
+            menus.moveButt(menus.button3);
+            menus.moveButt(menus.button4);
+            menus.moveButt(menus.button5);
+
             gameDraw();                     //прорисовать в панели
         }
         if (state.equals(STATES.PLAY)) {//игра
@@ -66,6 +66,7 @@ public class Panel extends JPanel implements ActionListener {
         }
 
     }
+
 
     //Рисуем в виртуальном окне
     public void gameRender() {

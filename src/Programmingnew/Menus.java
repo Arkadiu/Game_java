@@ -20,7 +20,53 @@ public class Menus {
         button4.draw(g);
         button5.draw(g);
     }
+    //попадание курсора на кнопку меню
+    public void moveButt(ButtMenus e) {
+        if (Panel.mouseX > e.getX() && Panel.mouseX < e.getX() + e.getW() &&
+                Panel.mouseY > e.getY() && Panel.mouseY < e.getY() + e.getH()) { //если курсор попал в кнопку
+            e.s = "image/but2.png";
+            if (e.equals(button1)) {
+                e.f = "New user";
+            }
+            if (e.equals(button2)) {
+                e.f = "Game";
+                if (Menus.click){   //клик мышки
+                    Panel.state = Panel.STATES.PLAY;    //переход в игру
+                    Menus.click = false;
+                }
+            }
+            if (e.equals(button3)) {
+                e.f = "Settings";
+            }
+            if (e.equals(button4)) {
+                e.f = "Rules";
+            }
+            if (e.equals(button5)) {
+                e.f = "Exit";
+                if (Menus.click){
+                    System.exit(0);
+                }
+            }
 
+        } else {
+            e.s = "image/but1.png";
+            if (e.equals(button1)) {
+                e.f = "Новый игрок";
+            }
+            if (e.equals(button2)) {
+                e.f = "Игра";
+            }
+            if (e.equals(button3)) {
+                e.f = "Настройки";
+            }
+            if (e.equals(button4)) {
+                e.f = "Правила";
+            }
+            if (e.equals(button5)) {
+                e.f = "Выход";
+            }
+        }
+    }
     class ButtMenus {
         // нач координаты и размер объекта
         private double x; //координата x героя
