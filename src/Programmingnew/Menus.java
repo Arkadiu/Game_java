@@ -4,80 +4,71 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Menus {
-    private int n;  //количество кнопок
-    private Color color1;   //цвет
-    private double x; // координата х кнопки
-    private double y; // координата y кнопки
-    private double w; // координата w кнопки
-    private double h; // координата h кнопки
 
-    public boolean user_m = false;      //курсор на кнопке новый игрок
-    public boolean game_m = false;      //курсор на кнопке играть
     public static boolean click = false;    //клик мышкой в режиме меню
 
-    private String img; //путь к картинке кнопки
-
-    String[] list = new String[5];  //Список из 5и элементов типа строка - название кнопок
-
-
-    public Menus() {
-        x = 100;
-        y = 0;
-        w = 396;
-        h = 100;
-        n = 5;
-        color1 = Color.BLACK;
-        img = "image/btn.png";
-
-        list[0] = "Новый игрок";
-        list[1] = "Играть";
-        list[2] = "Настройки";
-        list[3] = "Правила";
-        list[4] = "Выход";
-    }
-
-    public void update() {
-
-    }
+    ButtMenus button1 = new ButtMenus(10, 10, 396, 100, "image/but1.png", "Новый игрок");
+    ButtMenus button2 = new ButtMenus(10, 150, 396, 100, "image/but1.png", "Играть");
+    ButtMenus button3 = new ButtMenus(10, 300, 396, 100, "image/but1.png", "Настройки");
+    ButtMenus button4 = new ButtMenus(10, 450, 396, 100, "image/but1.png", "Правила");
+    ButtMenus button5 = new ButtMenus(10, 600, 396, 100, "image/but1.png", "Выход");
 
     public void draw(Graphics2D g) {
-        for (int i = 0; i < n; i++) {
-            g.drawImage(new ImageIcon(img).getImage(), (int) x, (int) (y + 140) * i, null);  //отрисовываем элемент в координатах
+        button1.draw(g);
+        button2.draw(g);
+        button3.draw(g);
+        button4.draw(g);
+        button5.draw(g);
+    }
 
-            g.setColor(color1);//задаем цвет объекту Color
-            Font font = new Font("Arial", Font.ITALIC, 60);//создаем объект класса фонт (передаем в конструктор параметры)
-            g.setFont(font);//устанавливаем наш шрифт
+    class ButtMenus {
+        // нач координаты и размер объекта
+        private double x; //координата x героя
+        private double y; //координата x героя
+        private double w; //координата x героя
+        private double h; //координата x героя
 
-            long length = (int) g.getFontMetrics().getStringBounds(list[i], g).getWidth(); //длинна надписи в пикселях
-            g.drawString(list[i], (int) (x + w / 2) - (int) (length / 2), (int) ((y + 140) * i + (h / 3) * 2));   //рисуем строчку в центре панели
+        public Color color1; //цвет
+
+        public String f; //надпись над кнопкой
+
+        public String s; //строка адреса картинки
+
+        public ButtMenus(double x, double y, double w, double h, String s, String f) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color1 = Color.WHITE;
+            this.f = f;
+            this.s = s;
         }
-        if (user_m){
-            Font font = new Font("Arial", Font.ITALIC, 30); //Создаем объект класса фреи
-            g.setFont(font);    //устанавливаем наш шрифт
-            g.drawString("Придумай имя для входа в игру", 500, 40); //рисуем строчку
-            g.drawString(" и сохранение прогресса", 500, 70);   //рисуем строчку
+
+        public double getX() {
+            return x;
         }
-        if (game_m){
-            g.drawImage(new ImageIcon("image/player.png").getImage(), 700, 190, null);
-            Font font = new Font("Arial", Font.ITALIC, 30);     //Создаем объект класса фонт, передаем в конструктор параметры
+
+        public double getY() {
+            return y;
+        }
+
+        public double getW() {
+            return w;
+        }
+
+        public double getH() {
+            return h;
+        }
+
+        //отрисовка героя
+        public void draw(Graphics2D g) {
+            g.drawImage(new ImageIcon(s).getImage(), (int) x, (int) y, null);   //отрисовываем элемент в координатах
+            g.setColor(color1); //задаем цвет объекту Color
+            Font font = new Font("Arial", Font.ITALIC, 60); //Создаем объект класса фонт
             g.setFont(font);
-            g.drawString("Начать игру", 500, 190);  //рисуем строчку в центре панели
+
+            long length = (int) g.getFontMetrics().getStringBounds(f, g).getWidth(); //длина надписи в пикселях
+            g.drawString(f, (int) (x + w / 2) - (int) (length / 2), (int) y + (int) (h / 3) * 2);//рисуем строчку в центре панели
         }
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getW() {
-        return w;
-    }
-
-    public double getH() {
-        return h;
     }
 }
