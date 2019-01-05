@@ -37,6 +37,10 @@ public class Menus {
             }
             if (e.equals(button3)) {
                 e.f = "Settings";
+                if (Menus.click){
+                    Panel.setMenus = true;
+                    Panel.buttMenus = false;
+                }
             }
             if (e.equals(button4)) {
                 e.f = "Rules";

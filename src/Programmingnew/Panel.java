@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Панель игры
@@ -13,18 +14,26 @@ public class Panel extends JPanel implements ActionListener {
     //размер панели
     public static int WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+
     //координаты мышки
     public static int mouseX;
     public static int mouseY;
 
-    public static enum STATES { //объявление перечисления
+    // активные страницы меню
+    public static boolean buttMenus = true;
+    public static boolean setMenus = false;
+
+    public static enum STATES {
         MENUS, PLAY
-    }
+    }   //объявление перечисления
 
     public static STATES state = STATES.MENUS;//переменная игры по изначльно - меню
 
     private BufferedImage image; // ссылка на объект
     private Graphics2D g; // ссылка на объект класса
+
+    //Списки кнопок
+    public ArrayList<SetMenus> buttons;
 
     Timer mainTimer = new Timer(30, this);//Таймер - задает интервал обновления всех событий
 
@@ -40,6 +49,19 @@ public class Panel extends JPanel implements ActionListener {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB); //создаем объект буфера для хранения картинок
         g = (Graphics2D) image.createGraphics();//граф. объекту присвоим элемент из буфера - картинка Graphics2D применив метод getGraphics()
 
+        buttons = new ArrayList<SetMenus>();
+        buttons.add(new SetMenus(500, 65, 100, 37, "", "легко"));
+        buttons.add(new SetMenus(650, 65, 100, 37, "", "средне"));
+        buttons.add(new SetMenus(800, 65, 100, 37, "", "сложно"));
+
+        buttons.add(new SetMenus(500, 210, 100, 37, "", "вкл"));
+        buttons.add(new SetMenus(650, 210, 100, 37, "", "выкл"));
+
+        buttons.add(new SetMenus(500, 365, 100, 37, "", "стандарт"));
+        buttons.add(new SetMenus(650, 365, 100, 37, "", "пользоват"));
+
+        buttons.add(new SetMenus(1200, 20, 100, 37, "", "назад"));
+
         addMouseListener(new Listeners());  //добавляем обработчик событий клик мыши
         addKeyListener(new Listeners());    //добавляем обработчик событий клавиатуры
         addMouseMotionListener(new Listeners());    //добавляем обработчик событий перемещений мыши
@@ -49,14 +71,18 @@ public class Panel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (state.equals(STATES.MENUS)) {   //если пер state == MENUS
             back.draw(g);                   //отобразить фон
-            menus.draw(g);                  //отобразить меню
 
-            menus.moveButt(menus.button1);
-            menus.moveButt(menus.button2);
-            menus.moveButt(menus.button3);
-            menus.moveButt(menus.button4);
-            menus.moveButt(menus.button5);
-
+            if (buttMenus) {
+                menus.draw(g);                  //отобразить меню
+                menus.moveButt(menus.button1);
+                menus.moveButt(menus.button2);
+                menus.moveButt(menus.button3);
+                menus.moveButt(menus.button4);
+                menus.moveButt(menus.button5);
+            }
+            if (setMenus){
+                moveSettButt();
+            }
             gameDraw();                     //прорисовать в панели
         }
         if (state.equals(STATES.PLAY)) {//игра
@@ -67,6 +93,17 @@ public class Panel extends JPanel implements ActionListener {
 
     }
 
+    public void moveSettButt(){
+        for (SetMenus button : buttons) {
+            button.draw(g);
+            if (Panel.mouseX > button.getX() && Panel.mouseX < button.getX()+button.getW() &&
+                    Panel.mouseY > button.getY() && Panel.mouseY < button.getY()+button.getH()){
+                button.s = "image/but3.png";
+            } else {
+                button.s = "image/but4.png";
+            }
+        } 
+    }
 
     //Рисуем в виртуальном окне
     public void gameRender() {
