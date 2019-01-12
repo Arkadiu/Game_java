@@ -23,6 +23,13 @@ public class Panel extends JPanel implements ActionListener {
     public static boolean buttMenus = true;
     public static boolean setMenus = false;
 
+    public static boolean easy = true;  // уровень сложности легкий
+    public static boolean medium = false;  // уровень сложности средний
+    public static boolean hard = false;  // уровень сложности сложный
+    public static boolean aud = true;
+    public static boolean control = true;   // управление по умолчанию
+
+
     public static enum STATES {
         MENUS, PLAY
     }   //объявление перечисления
@@ -80,7 +87,7 @@ public class Panel extends JPanel implements ActionListener {
                 menus.moveButt(menus.button4);
                 menus.moveButt(menus.button5);
             }
-            if (setMenus){
+            if (setMenus) {
                 moveSettButt();
             }
             gameDraw();                     //прорисовать в панели
@@ -93,16 +100,49 @@ public class Panel extends JPanel implements ActionListener {
 
     }
 
-    public void moveSettButt(){
+    public void moveSettButt() {
         for (SetMenus button : buttons) {
             button.draw(g);
-            if (Panel.mouseX > button.getX() && Panel.mouseX < button.getX()+button.getW() &&
-                    Panel.mouseY > button.getY() && Panel.mouseY < button.getY()+button.getH()){
+            if (Panel.mouseX > button.getX() && Panel.mouseX < button.getX() + button.getW() &&
+                    Panel.mouseY > button.getY() && Panel.mouseY < button.getY() + button.getH()) {
                 button.s = "image/but3.png";
+                if (button == buttons.get(0) && Menus.click) {
+                    easy = true;
+                    medium = false;
+                    hard = false;
+                }
+                if (button == buttons.get(1) && Menus.click) {
+                    easy = false;
+                    medium = true;
+                    hard = false;
+                }
+                if (button == buttons.get(2) && Menus.click) {
+                    easy = false;
+                    medium = false;
+                    hard = true;
+                }
+                if (button == buttons.get(3) && Menus.click) {
+                    aud = true;
+                }
+                if (button == buttons.get(4) && Menus.click) {
+                    aud = false;
+                }
+                if (button == buttons.get(5) && Menus.click) {
+                    control = true;
+                }
+                if (button == buttons.get(6) && Menus.click) {
+                    control = false;
+                }
+                if (button == buttons.get(7) && Menus.click) {
+                    setMenus = false;
+                    buttMenus = true;
+                }
+
+
             } else {
                 button.s = "image/but4.png";
             }
-        } 
+        }
     }
 
     //Рисуем в виртуальном окне

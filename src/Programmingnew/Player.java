@@ -30,7 +30,7 @@ public class Player {
         //размеры картинки героя
         w = 142;
         h = 229;
-        speed = 5; //скорость перемещения героя
+
         //нач значения клавиш
         up = false;
         down = false;
@@ -58,6 +58,8 @@ public class Player {
     //обновления
 
     public void update() {
+        speed = Panel.medium ? 4 : Panel.hard ? 2 : 10;
+        // смещение героя
         if (up && y > 20) {
             y -= speed;
         }

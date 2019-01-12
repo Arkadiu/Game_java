@@ -56,5 +56,15 @@ public class SetMenus {
 
         long length = (int) g.getFontMetrics().getStringBounds(f, g).getWidth(); //длина надписи в пикселях
         g.drawString(f, (int) (x + w / 2) - (int) (length / 2), (int) y + (int) (h / 3) * 2);   //рисуем строчку в центре
+
+        g.setColor(Color.red);      //задаем цвет объекту Color
+        Font font2 = new Font("Arial", Font.ITALIC, 40);    //Создаем объект класса фонт
+        g.setFont(font2);
+        String difficulty = Panel.medium ? "средний" : Panel.hard ? "сложный" : "лёrкий";
+        g.drawString(difficulty, 1000, 100);    //рисуем строчку
+        String soundIcon = !Panel.aud ? "image/aud_off.png" : "image/aud_on.png";
+        g.drawImage(new ImageIcon(soundIcon).getImage(), 1000, 200, null);//отрисовываем элемент
+        String control = !Panel.control ? "пользовательские" : "стандарт";
+        g.drawString(control, 1000, 400);   //рисуем строчку
     }
 }
