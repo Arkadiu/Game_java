@@ -6,6 +6,27 @@ public class Listeners implements MouseListener, KeyListener, MouseMotionListene
 
     @Override
     public void keyTyped(KeyEvent e) {
+        char sim = e.getKeyChar();  //получим символ клавиши
+        if (Panel.c_menus.button_up.zamen){     // присвоим надписи символ как строка
+            Panel.c_menus.button_up.f = String.valueOf(sim);
+            Panel.c_menus.button_up.zamen = false;
+        }
+        if (Panel.c_menus.button_d.zamen){     // присвоим надписи символ как строка
+            Panel.c_menus.button_d.f = String.valueOf(sim);
+            Panel.c_menus.button_d.zamen = false;
+        }
+        if (Panel.c_menus.button_l.zamen){     // присвоим надписи символ как строка
+            Panel.c_menus.button_l.f = String.valueOf(sim);
+            Panel.c_menus.button_l.zamen = false;
+        }
+        if (Panel.c_menus.button_r.zamen){     // присвоим надписи символ как строка
+            Panel.c_menus.button_r.f = String.valueOf(sim);
+            Panel.c_menus.button_r.zamen = false;
+        }
+        if (Panel.c_menus.button_f.zamen){     // присвоим надписи символ как строка
+            Panel.c_menus.button_f.f = String.valueOf(sim);
+            Panel.c_menus.button_f.zamen = false;
+        }
 
     }
 

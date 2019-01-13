@@ -20,8 +20,9 @@ public class Panel extends JPanel implements ActionListener {
     public static int mouseY;
 
     // активные страницы меню
-    public static boolean buttMenus = true;
-    public static boolean setMenus = false;
+    public static boolean buttMenus = true;     //главная страница меню
+    public static boolean setMenus = false;     //страница меню настроек
+    public static boolean controlMenus = false; //страница меню настроек
 
     public static boolean easy = true;  // уровень сложности легкий
     public static boolean medium = false;  // уровень сложности средний
@@ -29,6 +30,7 @@ public class Panel extends JPanel implements ActionListener {
     public static boolean aud = true;
     public static boolean control = true;   // управление по умолчанию
 
+    public static ControlMenus c_menus;
 
     public static enum STATES {
         MENUS, PLAY
@@ -52,6 +54,9 @@ public class Panel extends JPanel implements ActionListener {
         super(); //активируем конструктор родителя
         setFocusable(true);//передаем фокус
         requestFocus();//активируем
+        mainTimer.start();
+
+        c_menus = new ControlMenus();
 
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB); //создаем объект буфера для хранения картинок
         g = (Graphics2D) image.createGraphics();//граф. объекту присвоим элемент из буфера - картинка Graphics2D применив метод getGraphics()
@@ -89,6 +94,15 @@ public class Panel extends JPanel implements ActionListener {
             }
             if (setMenus) {
                 moveSettButt();
+            }
+            if (controlMenus) {
+                c_menus.draw(g);
+                c_menus.moveContr(c_menus.button_up);
+                c_menus.moveContr(c_menus.button_d);
+                c_menus.moveContr(c_menus.button_l);
+                c_menus.moveContr(c_menus.button_r);
+                c_menus.moveContr(c_menus.button_f);
+                c_menus.moveContr(c_menus.button_k);
             }
             gameDraw();                     //прорисовать в панели
         }
@@ -129,9 +143,16 @@ public class Panel extends JPanel implements ActionListener {
                 }
                 if (button == buttons.get(5) && Menus.click) {
                     control = true;
+                    c_menus.button_up.f = "курс вверх";
+                    c_menus.button_d.f = "курс вниз";
+                    c_menus.button_l.f = "курс влево";
+                    c_menus.button_r.f = "курс вправо";
+                    c_menus.button_f.f = "Space";
                 }
                 if (button == buttons.get(6) && Menus.click) {
                     control = false;
+                    setMenus = false;
+                    controlMenus = true;
                 }
                 if (button == buttons.get(7) && Menus.click) {
                     setMenus = false;
