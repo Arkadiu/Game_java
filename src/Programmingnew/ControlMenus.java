@@ -8,20 +8,20 @@ public class ControlMenus {
     public final static String BUTTON3 = "image/but3.png";
 
     // Объявление кнопок
-    ButtControl button_up = new ButtControl(550, 10, 100, 37, "курс вверх", BUTTON4);
-    ButtControl button_d = new ButtControl(550, 110, 100, 37, "курс вниз", BUTTON4);
-    ButtControl button_l = new ButtControl(550, 210, 100, 37, "курс влево", BUTTON4);
-    ButtControl button_r = new ButtControl(550, 310, 100, 37, "курс вправо", BUTTON4);
-    ButtControl button_f = new ButtControl(550, 410, 100, 37, "Space", BUTTON4);
-    ButtControl button_k = new ButtControl(50, 20, 100, 37, "назад", BUTTON4);
+    ButtControl button_up = new ButtControl(550, 10, 100, 37, "курс вверх", BUTTON4, 38);
+    ButtControl button_down = new ButtControl(550, 110, 100, 37, "курс вниз", BUTTON4, 40);
+    ButtControl button_left = new ButtControl(550, 210, 100, 37, "курс влево", BUTTON4, 37);
+    ButtControl button_right = new ButtControl(550, 310, 100, 37, "курс вправо", BUTTON4, 39);
+    ButtControl button_fight = new ButtControl(550, 410, 100, 37, "Space", BUTTON4, 32);
+    ButtControl button_k = new ButtControl(50, 20, 100, 37, "назад", BUTTON4, 8);
 
     // вызов метода для прорисовки кнопки
     public void draw(Graphics2D g) {
         button_up.draw(g);
-        button_d.draw(g);
-        button_l.draw(g);
-        button_r.draw(g);
-        button_f.draw(g);
+        button_down.draw(g);
+        button_left.draw(g);
+        button_right.draw(g);
+        button_fight.draw(g);
         button_k.draw(g);
     }
 
@@ -33,16 +33,16 @@ public class ControlMenus {
             if (b.equals(button_up)) {
                 editContr(b);   // метод активации кнопки для замены клавиши управления
             }
-            if (b.equals(button_d)) {
+            if (b.equals(button_down)) {
                 editContr(b);   // метод активации кнопки для замены клавиши управления
             }
-            if (b.equals(button_l)) {
+            if (b.equals(button_left)) {
                 editContr(b);   // метод активации кнопки для замены клавиши управления
             }
-            if (b.equals(button_r)) {
+            if (b.equals(button_right)) {
                 editContr(b);   // метод активации кнопки для замены клавиши управления
             }
-            if (b.equals(button_f)) {
+            if (b.equals(button_fight)) {
                 editContr(b);   // метод активации кнопки для замены клавиши управления
             }
             if (b.equals(button_k) && Menus.click) {
@@ -75,15 +75,18 @@ public class ControlMenus {
 
         public String f;    //надпись над кнопкой
         public String s;    // строка адреса картинки
+        public int ch_code; //код символа кнопки
         public boolean zamen = false;   //разрешение на замену клавиши
 
-        public ButtControl(double x, double y, double w, double h, String f, String s) {
+        public ButtControl(double x, double y, double w, double h, String f, String s, int ch_code) {
             this.x = x;
             this.y = y;
             this.w = w;
             this.h = h;
             this.f = f;
             this.s = s;
+            this.ch_code = ch_code;
+            color1 = Color.BLACK;
         }
 
         public double getX() {

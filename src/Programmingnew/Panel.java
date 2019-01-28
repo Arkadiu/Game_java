@@ -98,10 +98,10 @@ public class Panel extends JPanel implements ActionListener {
             if (controlMenus) {
                 c_menus.draw(g);
                 c_menus.moveContr(c_menus.button_up);
-                c_menus.moveContr(c_menus.button_d);
-                c_menus.moveContr(c_menus.button_l);
-                c_menus.moveContr(c_menus.button_r);
-                c_menus.moveContr(c_menus.button_f);
+                c_menus.moveContr(c_menus.button_down);
+                c_menus.moveContr(c_menus.button_left);
+                c_menus.moveContr(c_menus.button_right);
+                c_menus.moveContr(c_menus.button_fight);
                 c_menus.moveContr(c_menus.button_k);
             }
             gameDraw();                     //прорисовать в панели
@@ -144,10 +144,16 @@ public class Panel extends JPanel implements ActionListener {
                 if (button == buttons.get(5) && Menus.click) {
                     control = true;
                     c_menus.button_up.f = "курс вверх";
-                    c_menus.button_d.f = "курс вниз";
-                    c_menus.button_l.f = "курс влево";
-                    c_menus.button_r.f = "курс вправо";
-                    c_menus.button_f.f = "Space";
+                    c_menus.button_down.f = "курс вниз";
+                    c_menus.button_left.f = "курс влево";
+                    c_menus.button_right.f = "курс вправо";
+                    c_menus.button_fight.f = "Space";
+                    // передача кодов клавиш стандартного управления
+                    c_menus.button_up.ch_code = 38;
+                    c_menus.button_down.ch_code = 40;
+                    c_menus.button_left.ch_code = 37;
+                    c_menus.button_right.ch_code = 39;
+                    c_menus.button_fight.ch_code = 32;
                 }
                 if (button == buttons.get(6) && Menus.click) {
                     control = false;

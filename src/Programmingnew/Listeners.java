@@ -7,25 +7,25 @@ public class Listeners implements MouseListener, KeyListener, MouseMotionListene
     @Override
     public void keyTyped(KeyEvent e) {
         char sim = e.getKeyChar();  //получим символ клавиши
-        if (Panel.c_menus.button_up.zamen){     // присвоим надписи символ как строка
+        if (Panel.c_menus.button_up.zamen) {     // присвоим надписи символ как строка
             Panel.c_menus.button_up.f = String.valueOf(sim);
             Panel.c_menus.button_up.zamen = false;
         }
-        if (Panel.c_menus.button_d.zamen){     // присвоим надписи символ как строка
-            Panel.c_menus.button_d.f = String.valueOf(sim);
-            Panel.c_menus.button_d.zamen = false;
+        if (Panel.c_menus.button_down.zamen) {     // присвоим надписи символ как строка
+            Panel.c_menus.button_down.f = String.valueOf(sim);
+            Panel.c_menus.button_down.zamen = false;
         }
-        if (Panel.c_menus.button_l.zamen){     // присвоим надписи символ как строка
-            Panel.c_menus.button_l.f = String.valueOf(sim);
-            Panel.c_menus.button_l.zamen = false;
+        if (Panel.c_menus.button_left.zamen) {     // присвоим надписи символ как строка
+            Panel.c_menus.button_left.f = String.valueOf(sim);
+            Panel.c_menus.button_left.zamen = false;
         }
-        if (Panel.c_menus.button_r.zamen){     // присвоим надписи символ как строка
-            Panel.c_menus.button_r.f = String.valueOf(sim);
-            Panel.c_menus.button_r.zamen = false;
+        if (Panel.c_menus.button_right.zamen) {     // присвоим надписи символ как строка
+            Panel.c_menus.button_right.f = String.valueOf(sim);
+            Panel.c_menus.button_right.zamen = false;
         }
-        if (Panel.c_menus.button_f.zamen){     // присвоим надписи символ как строка
-            Panel.c_menus.button_f.f = String.valueOf(sim);
-            Panel.c_menus.button_f.zamen = false;
+        if (Panel.c_menus.button_fight.zamen) {     // присвоим надписи символ как строка
+            Panel.c_menus.button_fight.f = String.valueOf(sim);
+            Panel.c_menus.button_fight.zamen = false;
         }
 
     }
@@ -35,41 +35,64 @@ public class Listeners implements MouseListener, KeyListener, MouseMotionListene
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();   //Получить код нажатой клавиши
         //Проверка клавиш
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+        if (key == Panel.c_menus.button_up.ch_code) {
             Player.up = true;
         }
-        if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+        if (key == Panel.c_menus.button_down.ch_code) {
             Player.down = true;
         }
-        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+        if (key == Panel.c_menus.button_left.ch_code) {
             Player.left = true;
         }
-        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+        if (key == Panel.c_menus.button_right.ch_code) {
             Player.right = true;
         }
+
+        if (key == KeyEvent.VK_ESCAPE) {
+            if (Panel.state == Panel.STATES.PLAY)
+                Panel.state = Panel.STATES.MENUS;   //переход в меню игры
+        }
+
+        if (Panel.c_menus.button_up.zamen){
+            Panel.c_menus.button_up.ch_code = e.getKeyCode();
+        }
+        if (Panel.c_menus.button_down.zamen){
+            Panel.c_menus.button_down.ch_code = e.getKeyCode();
+        }
+        if (Panel.c_menus.button_left.zamen){
+            Panel.c_menus.button_left.ch_code = e.getKeyCode();
+        }
+        if (Panel.c_menus.button_right.zamen){
+            Panel.c_menus.button_right.ch_code = e.getKeyCode();
+        }
+
+        if (Panel.c_menus.button_fight.zamen){
+            Panel.c_menus.button_fight.ch_code = e.getKeyCode();
+        }
+
+
+
     }
 
     //Проверка отжатой клавиши
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();   //Получить код нажатой клавиши
+
         //Проверка клавиш
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+        if (key == Panel.c_menus.button_up.ch_code) {
             Player.up = false;
         }
-        if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+        if (key == Panel.c_menus.button_down.ch_code) {
             Player.down = false;
         }
-        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+        if (key == Panel.c_menus.button_left.ch_code) {
             Player.left = false;
         }
-        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+        if (key == Panel.c_menus.button_right.ch_code) {
             Player.right = false;
         }
-        if (key == KeyEvent.VK_ESCAPE){
-            if (Panel.state == Panel.STATES.PLAY)
-                Panel.state = Panel.STATES.MENUS;   //переход в меню игры
-        }
+
     }
 
     @Override
